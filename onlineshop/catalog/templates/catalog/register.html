@@ -1,0 +1,38 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+{% block title %}
+<title>Регистрация</title>
+{% endblock %}
+{% block content %}
+<div class='link-back'><a href='{% url 'homePage' %}'>Назад</a></div>
+<div class='link-back link-min-width'><a href='{% url 'homePage' %}'><ion-icon name="arrow-back-outline"></ion-icon></a></div>
+<div class='log-reg'>
+    {% comment %} <div class='user-login'>
+        <form action="{% url 'login' %}" method='POST'>
+            {% csrf_token %}
+            <label class='login-label' for='user-login'><p>Логин</p></label>
+            <input class='login-field' type='text' name='username'></input>
+            <label class='login-label' for='user-password'><p>Пароль</p></label>
+            <input class='login-field' type='password' name='password'></input>
+            <input class='login-submit-btn' type='submit' value="Войти"></input>
+        </form>
+    </div> {% endcomment %}
+    <div class='reg-title'>Регистрация</div>
+    <div class='reg'>
+        <div class='reg-form'>
+            <form action='{% url 'register' %}' method='POST'>
+                {% csrf_token %}
+                <label class='register-label' for='user-name' maxlength=15><p>Имя</p></label>
+                <input class='register-field' id='user-name' type='text' name='first_name'></input>
+                <label class='register-label' for='user-login'><p>Никнейм</p></label>
+                <input class='register-field' id='user-login' type='text' name='username'></input>
+                <label class='register-label' for='user-email'><p>Почта</p></label>
+                <input class='register-field' id='user-email' type='email' name='email'></input>
+                <label class='register-label' for='user-password'><p>Пароль</p></label>
+                <input class='register-field' id='user-password' type='password' name='password'></input>
+                <input type='submit' class='register-submit' value='Регистрация'></input>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

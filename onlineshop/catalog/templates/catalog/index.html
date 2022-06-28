@@ -1,0 +1,186 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ title }}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'catalog/css/style-main.css' %}">
+	<meta name='viewport' content='width=1000'>
+</head>
+<body id='main-page'>
+	<div class="menu">
+		<div class="btn btn-1" id="btnonmouse-1"><a href="{% url 'homePage' %}"><ion-icon class="icons" name="home-outline"></ion-icon></a></div>
+		<div class="btn" id="btnonmouse-2"><a href="{% url 'catalog' %}"><ion-icon class="icons" name="bag-outline"></ion-icon></a></div>
+		<div class="btn" id="btnonmouse-3"><a href="{% url 'cart' %}"><ion-icon class="icons" name="cart-outline"></ion-icon></a></div>
+		<div class="btn" id="btnonmouse-4"><a href="{% url 'profile' %}"><ion-icon class="icons" name="person-outline"></ion-icon></a></div>
+	</div>
+	<!-- header -->
+	<div class="header">
+			<!-- buttons menu -->
+		<div class="header-logo">
+			<!-- <div class="header-logo-title">ВАШ ЛОГОТИП</div> -->
+			<img class="header-logo-gif" src="{% static 'catalog/images/glitch.gif' %}">
+		</div>
+		<div class="header-adress">
+			<div class="adress">адреса</div>
+			<div class="adress-list">
+				<ul>
+					<li>адрес 1</li>
+					<li>адрес 2</li>
+					<li>адрес 3</li>
+				</ul>
+			</div>
+			<div class="number">контакты
+				<a href='https://vk.com/roma20031999' target='_blank'><ion-icon class="header-contact-icons" name="logo-vk"></ion-icon></a>
+				<a href='https://www.instagram.com/r.romka.r' target='_blank'><ion-icon class="header-contact-icons" name="logo-instagram"></ion-icon></a>
+				<a href='https://t.me/ryabovroman' target='_blank'><ion-icon class="header-contact-icons" name="paper-plane-outline"></ion-icon></a>
+			</div>
+		</div>
+		<div class='show-all-menu'><ion-icon name="reorder-three-outline"></ion-icon></div>
+		<div class='min-width-menu active'>
+			<div class='menu-blocks'>
+				<a href="{% url 'profile' %}">Профиль</a>
+				<a href="{% url 'cart' %}">Корзина</a>
+				<a href="{% url 'profile' %}">Акции</a>
+				<a href="{% url 'homePage' %}">О компании</a>
+				<div class='menu-block-adresses'>
+					<ul>Адреса:
+					<li>Адрес 1</li>
+					<li>Адрес 2</li>
+					<li>Адрес 3</li>
+					</ul>
+				</div>
+				<div class="number">
+					<a href='https://vk.com/roma20031999' target='_blank'><ion-icon class="header-contact-icons" name="logo-vk"></ion-icon></a>
+					<a href='https://www.instagram.com/r.romka.r' target='_blank'><ion-icon class="header-contact-icons" name="logo-instagram"></ion-icon></a>
+					<a href='https://t.me/ryabovroman' target='_blank'><ion-icon class="header-contact-icons" name="paper-plane-outline"></ion-icon></a>
+				</div>
+			</div>
+		</div>
+		<div class="login-register">
+			{% if user.is_authenticated %}
+				<div class="login-menu-js">
+					<div class="login-phrase phrase-1"><a href="{% url 'profile' %}">Профиль</a><hr class="login-menu-hr"></div>
+					<div class="login-phrase phrase-2"><a href="{% url 'homePage' %}">Акции</a><hr></div>
+					<div class="login-phrase phrase-3"><a href="{% url 'cart' %}">Корзина</a><hr></div>
+					<div class="login-phrase phrase-4"><a href="{% url 'homePage' %}">О компании</a><hr></div>
+				</div>
+			{% else %}
+			<div class="login-menu-js">
+				<div class="login-phrase phrase-1"><a href="{% url 'login' %}">Войти</a><hr class="login-menu-hr"></div>
+				<div class="login-phrase phrase-1"><a href="{% url 'profile' %}">Акции</a><hr class="login-menu-hr"></div>
+				<div class="login-phrase phrase-1"><a href="{% url 'profile' %}">О компании</a><hr class="login-menu-hr"></div>
+			</div>
+			{% endif %}
+			<div class="login"><ion-icon class="login-user-icon" name="person-outline"></ion-icon></div>
+		</div>
+		<!-- animations -->
+		<div class="header-animation"><img class="header-animation-img" src="{% static 'catalog/images/vector.png' %}"></div>
+		<div class="header-animation-pictures"><p><img class="animated-pictures" src="{% static 'catalog/images/main1.png' %}"></p></div>
+		<div class="header-line-under"><div class="header-line-on"></div></div>
+		<div class="info"></div>
+		<div class="header-info">
+			<div class="header-about-title">we are the best ch<span class="header-letter-o">o</span>ice:</div>
+			<div class="header-about-all">
+				<img class="header-flag-info" src="{% static 'catalog/images/Group.png' %}">
+				<div class="header-about-divs"><ion-icon class="header-about-ico" name="speedometer-outline"></ion-icon>fast delivery</div>
+				<div class="header-about-divs"><ion-icon class="header-about-ico" name="time-outline"></ion-icon>every time sales</div>
+				<div class="new-string"></div>
+				<div class="header-about-divs"><ion-icon class="header-about-ico" name="thumbs-up-outline"></ion-icon>good feedback</div>
+				<div class="header-about-divs"><ion-icon class="header-about-ico" name="sync-outline"></ion-icon>3-year warranty</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	{% comment %} <div class="callback">
+		<div class="callback-btn"><ion-icon class="icon-msg" name="chatbubble-ellipses-outline"></ion-icon></div>
+	</div> {% endcomment %}
+	<div class="callbacks-title"><p>отзывы</p></div>
+	<div class="callbacks">
+		<div class="callbacks-all-calls">
+			{% for f in user_feedbacks %}
+			<div class="callbacks-element another-callbacks">
+				<div class="callback-user-photo"><ion-icon class="callback-user-img" name="person-outline"></ion-icon></div>
+				<div class="callback-username">{{ f.name }}
+					<div class="stars">
+						{% if f.ratingcomment == 1 %}
+						★
+						{% elif f.ratingcomment == 2 %}
+						★★
+						{% elif f.ratingcomment == 3 %}
+						★★★
+						{% elif f.ratingcomment == 4 %}
+						★★★★
+						{% elif f.ratingcomment == 5 %}
+						★★★★★
+						{% endif %}
+					</div>
+					<div class="callback-date">{{ f.date }}</div>
+				</div>
+				<div class="callback-user-text">
+					<div class="callback-user-text-span">{{ f.feedback_text }}</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="makecallback" id="redirect-cb">
+			{% if user.is_authenticated %}
+			<form action="{% url 'create_feedback' %}" method="post">
+				{% csrf_token %}
+				<label id="user-name-form"><p>Имя:</p></label><br>
+				<input name="name" maxlength='12' type='name' id="user-name" required readonly value="{{ user.username }}">
+				<label for="user-text" id="user-text-form"><p>Отзыв:</p></label>
+				<textarea class="textarea" maxlength='120' name="feedback_text" required id="user-text" type="text"></textarea>
+				<div class="result" id="result">0</div>
+				<div class='rating-main'>
+					<div class="rating">
+						<div class="rating-items">	
+							<input type="radio" required id="rating-items-5" class="rating-item" name="ratingcomment" value="5">
+							<label for="rating-items-5" class="rating-label"></label>
+							<input type="radio" required id="rating-items-4" class="rating-item" name="ratingcomment" value="4">
+							<label for="rating-items-4" class="rating-label"></label>
+							<input type="radio" required id="rating-items-3" class="rating-item" name="ratingcomment" value="3">
+							<label for="rating-items-3" class="rating-label"></label>
+							<input type="radio" required id="rating-items-2" class="rating-item" name="ratingcomment" value="2">
+							<label for="rating-items-2" class="rating-label"></label>
+							<input type="radio" required id="rating-items-1" class="rating-item" name="ratingcomment" value="1">
+							<label for="rating-items-1" class="rating-label"></label>
+						</div>
+					</div>
+				</div>
+				<input type="submit" class="button-send">
+			</form>
+			{% else %}
+			<form action="#" method="post">
+				{% csrf_token %}
+				<label id="user-name-form"><p>Имя:</p></label><br>
+				<input type='text' name="name" maxlength='12' id='user-name' disabled required readonly value="-------------">
+				<label for="user-text" id="user-text-form"><p>Отзыв:</p></label>
+				<textarea class="textarea" maxlength='120' name="feedback_text" disabled readonly required id="user-text" type="text"></textarea>
+				<div class='rating-main'>
+					<div class="rating">
+						<div class="rating-items">	
+							<input type="radio" required id="rating-items-5" class="rating-item" name="ratingcomment" value="5">
+							<label for="rating-items-5" class="rating-label"></label>
+							<input type="radio" required id="rating-items-4" class="rating-item" name="ratingcomment" value="4">
+							<label for="rating-items-4" class="rating-label"></label>
+							<input type="radio" required id="rating-items-3" class="rating-item" name="ratingcomment" value="3">
+							<label for="rating-items-3" class="rating-label"></label>
+							<input type="radio" required id="rating-items-2" class="rating-item" name="ratingcomment" value="2">
+							<label for="rating-items-2" class="rating-label"></label>
+							<input type="radio" required id="rating-items-1" class="rating-item" name="ratingcomment" value="1">
+							<label for="rating-items-1" class="rating-label"></label>
+						</div>
+					</div>
+				</div>
+			</form>
+			<a href='{% url 'login' %}'><div class='callback-not-autheticated'><p>Авторизуйтесь</p></div></a>
+			{% endif %}
+		</div>
+	</div>
+	<script type="text/javascript" src="{% static 'catalog/js/script-main.js' %}"></script>
+	<script type="text/javascript" src="{% static 'catalog/js/script.js' %}"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

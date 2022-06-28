@@ -1,0 +1,81 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+{% block title %}
+<title>{{ title }}</title>
+{% endblock %}
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{% static 'catalog/css/style-base.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'catalog/css/style-cart.css' %}">
+{% endblock %}
+{% block content %}
+<div class='link-back'><a href='{% url 'homePage' %}'>Назад</a></div>
+<div class='link-back link-min-width'><a href='{% url 'homePage' %}'><ion-icon name="arrow-back-outline"></ion-icon></a></div>
+<div class='show-all-menu'><ion-icon name="reorder-three-outline"></ion-icon></div>
+<div class='min-width-menu active'>
+    <div class='menu-blocks'>
+        <a href="{% url 'profile' %}">Профиль</a>
+        <a href="{% url 'cart' %}">Корзина</a>
+        <a href="{% url 'profile' %}">Акции</a>
+        <a href="{% url 'homePage' %}">О компании</a>
+        <div class='menu-block-adresses'>
+            <ul>Адреса:
+            <li>Адрес 1</li>
+            <li>Адрес 2</li>
+            <li>Адрес 3</li>
+            </ul>
+        </div>
+        <div class="number">
+            <a href='https://vk.com/roma20031999' target='_blank'><ion-icon class="header-contact-icons" name="logo-vk"></ion-icon></a>
+            <a href='https://www.instagram.com/r.romka.r' target='_blank'><ion-icon class="header-contact-icons" name="logo-instagram"></ion-icon></a>
+            <a href='https://t.me/ryabovroman' target='_blank'><ion-icon class="header-contact-icons" name="paper-plane-outline"></ion-icon></a>
+        </div>
+    </div>
+</div>
+{% if request.session.cart %}
+<div class='cart-title'>Корзина</div>
+<hr class='cart-hr'>
+{% else %}
+<div class='cart-title'>Корзина(пусто)</div>
+<hr class='cart-hr'>
+<div class='empty-block'></div>
+{% endif %}
+<div class='cart-items'>
+    {% if request.session.cart %}
+        <div class='btn-delete-all-from-cart'>
+            <form action="{% url 'delete' %}" method='post'>
+                {% csrf_token %}
+                <input type="hidden" name="url_from" value="{{ request.path }}">
+                <button type="submit">ОЧИСТИТЬ</button>
+            </form>
+        </div>
+        {% for g in goods %}
+            {% if g.id in cart_list %}
+                <form action="{% url 'remove' id=g.id%}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="url_from" value="{{ request.path }}">
+                    <button class="button-delete-one-item" type="submit"><ion-icon class='ion-icon-delete' name="close-circle-outline"></ion-icon></button>
+                </form>
+                <div class='item'>
+                    <div class='item-photo'><img class='item-photo-img' src='{{ g.photo.url }}'></div>
+                    <div class='item-title'>{{ g.name }}</div>
+                    <div class='item-price'>{{ g.price }}Р</div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <div class='result'>
+            <div class='result-title'>Итоговая стоимость: </div>
+            <div class='result-price'>{{ total_price }}Р</div>
+        </div>
+        <div class='ordering'>
+            {% if user.is_authenticated %}
+            <form action="{% url 'ordering' %}" method='POST'>
+                {% csrf_token %}
+                <input type='submit' class='ordering-btn' value='Оформить заказ'></input>
+            </form>
+            {% else %}
+            <a href="{% url 'login' %}"><div class='cart-auth'><p>Авторизуйтесь для заказа</p></div></a>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

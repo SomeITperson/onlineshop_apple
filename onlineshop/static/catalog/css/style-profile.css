@@ -1,0 +1,397 @@
+@font-face {
+    font-family: "Vinnytsia";
+    src: url('/static/fonts/VinnytsiaSerif.ttf') format('truetype');
+}
+
+.link-back {
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.link-min-width {
+    display: none;
+}
+
+.link-back a {
+    vertical-align: middle;
+}
+
+.link-back:hover {
+    background: gainsboro;
+}
+
+/* Вертикальное меню */
+.all-profile {
+    width: 100%;
+    display: flex;
+}
+
+.vertical-menu {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 10% 0 0 5vw;
+    width: 12vw;
+    height: 60vh;
+    text-transform: uppercase;
+    font-family: Ermilov-bold;
+    color: rgb(251, 251, 251);
+    font-size: 0.9em;
+    background: rgba(116, 62, 117, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    position: fixed;
+}
+
+.vertical-menu ion-icon {
+    font-size: 1em;
+    margin-right: 10px;
+}
+
+.menu-element {
+    width: auto;
+    height: 40px;
+    margin-top: 10%;
+    text-align: center;
+    transition: 0.5s;
+    color: white;
+}
+
+.menu-element:hover {
+    background: #ffffff;
+    border-top: 20px solid #ffffff;
+    transition: 0.5s;
+    cursor: pointer;
+    color: black;
+    font-size: 1.1em;
+}
+
+.active {
+    background: black;
+}
+
+.menu {
+    background: rgb(255, 255, 255);
+}
+
+/* Инфо-меню профиля */
+.vertical-info p {
+    font-size: 1.75em;
+    font-family: Ermilov-bold;
+    margin: auto;
+    margin-top: 3vh;
+    width: auto;
+    text-align: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: rgb(0, 0, 0);
+    height: 30px;
+    vertical-align: middle;
+}
+
+.info-settings, .info-promo, .info-orders, .info-cart {
+    background: white;
+    width: 70%;
+    margin: 0 0 0 30%;
+    border-radius: 10px;
+    height: 500px;
+    float: right;
+    height: auto;
+}
+
+.info-cart {
+    height: 200px;
+}
+
+.min-width-menu-active {
+    display: none;
+}
+
+.min-width-menu {
+    display: none;
+}
+
+.show-all-menu {
+    display: none;
+}
+
+.awaiting, .promo, .orders, .cart {
+    margin-top: 5vh;
+}
+
+/* Заказы */
+
+.order {
+    width: 80%;
+    height: 200px;
+    font-size: 1.5vw;
+    margin: 5vh 10% 0 -10%;
+}
+
+.settings {
+    height: 300px;
+}
+
+/* logout */
+
+.profile-logout {
+    background: rgb(255, 255, 255);
+    width: 8vw;
+    height: 4vh;
+    font-size: 1.2vw;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 20px;
+    color: rgb(0, 0, 0);
+    border-top: 1vh solid rgb(255, 255, 255);
+    margin: 0 18% 5% 18%;
+    outline: 2px solid rgb(255, 0, 0);
+    transition: 0.5s;
+}
+
+.profile-logout:hover {
+    background: red;
+    color: white;
+    transition: 0.5s;
+    border-top: 1vh solid red;
+    box-shadow: 0 0 1vw rgb(81, 43, 82);
+}
+
+/* Настройки профиля */
+
+.profile-bold {
+    font-family: Ermilov-bold;
+    font-size: 1.5vw;
+    text-transform: uppercase;
+}
+
+.profile-first {
+    margin-top: 5vh;
+}
+
+.btn-change-password {
+    background: rgb(0, 0, 0);
+    font-size: 2vh;
+    text-transform: uppercase;
+    border: 2px solid black;
+    height: 4vh;
+    font-weight: bold;
+    color: white;
+}
+
+.btn-change-password:hover {
+    background: grey;
+    border: 2px solid black;
+}
+
+#password {
+    border: none;
+    letter-spacing: 0.3vw;
+    margin-left: 1vw;
+}
+
+body {
+    height: auto;
+}
+
+.order {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 2px solid black;
+    height: auto;
+    font-size: 1em;
+}
+
+.info-settings, .info-promo, .info-orders, .info-cart {
+    background: white;
+    width: 100%;
+    border-radius: 10px;
+    height: 500px;
+    height: auto;
+    float: none;
+    margin: 0;
+}
+
+.settings-profile {
+    font-size: 1.4vw;
+    font-weight: normal;
+    width: 80%;
+    margin: 0 10% 0 10%;
+}
+
+.profile-name, .profile-username, .profile-email, .profile-password {
+    margin: 5vh 0 0 5vh;
+}
+
+.vertical-info {
+    width: 60%;
+    height: auto;
+    background: #ffffff;
+    margin: 10vh 20% 0 20%;
+    margin-bottom: 200px;
+}
+
+.profile-name, .profile-username, .profile-email, .profile-password {
+    margin: 5vh 0 0 5vh;
+}
+
+.profile-bold {
+    font-size: 1.2vw;
+}
+
+.order {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 2px solid black;
+    height: 5vh;
+    width: 80%;
+    margin: 2vh 10% 0 10%;
+}
+
+.none-promo, .none-sales {
+    font-size: 0.8vw;
+}
+
+.profile-logout-min-width {
+    display: none;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+
+.profile-logout-min-width {
+    display: block;
+    border-radius: 20px;
+    width: 20%;
+    background: red;
+    text-align: center;
+    color: white;
+    height: 4vh;
+    margin: 0 40% 0 40%;
+    border: 1px solid black;
+    margin-bottom: 200px;
+    font-family: UZ;
+}
+
+.profile-logout-min-width:hover {
+    background: rgb(255, 62, 62);
+}
+
+.vertical-menu {
+    display: none;
+}
+
+.vertical-menu span {
+    display: none;
+}
+
+.link-back {
+    display: none;
+}
+
+.link-min-width {
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.show-all-menu {
+    display: inline;
+}
+
+.min-width-menu-active {
+    display: block;
+}
+
+.info-settings, .info-promo, .info-orders, .info-cart {
+    background: white;
+    width: 100%;
+    border-radius: 10px;
+    height: 500px;
+    height: auto;
+    float: none;
+    margin: 0;
+}
+
+.vertical-info p {
+    font-size: 1.75em;
+    font-family: Ermilov-bold;
+    margin: auto;
+    margin-top: 3vh;
+    width: auto;
+    text-align: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: rgb(0, 0, 0);
+    height: 30px;
+    vertical-align: middle;
+}
+
+.vertical-info {
+    width: 90%;
+    height: auto;
+    background: #ffffff;
+    margin: 10vh 5% 0 5%;
+    margin-bottom: 2vh;
+}
+
+.settings-profile {
+    font-size: 3vw;
+    font-weight: normal;
+    width: 80%;
+    margin: 0 10% 0 10%;
+}
+
+.profile-name, .profile-username, .profile-email, .profile-password {
+    margin: 5vh 0 0 5vh;
+}
+
+.profile-bold {
+    font-size: 3vw;
+}
+
+.order {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 2px solid black;
+    height: 5vh;
+    width: 80%;
+    margin: 2vh 10% 0 10%;
+}
+
+.none-promo, .none-sales {
+    font-size: 1.5vw;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .vertical-menu {
+        font-size: 1.5em;
+        margin-top: 20%;
+    }
+
+    .vertical-menu span {
+        display: none;
+    }
+
+    .settings-profile {
+        font-size: 2vw;
+    }
+
+    .none-promo, .none-sales {
+        font-size: 1vw;
+    }
+
+    .order {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        border: 2px solid black;
+        height: 5vh;
+        width: 80%;
+        margin: 2vh 10% 0 10%;
+    }
+}

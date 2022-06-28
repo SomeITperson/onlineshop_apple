@@ -1,0 +1,108 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+{% block title %}
+<title>{{ title }}</title>
+{% endblock %}
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{% static 'catalog/css/style-base.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'catalog/css/style-profile.css' %}">
+{% endblock %}
+{% block content %}
+<div class='link-back'><a href='{% url 'homePage' %}'>Назад</a></div>
+<div class='link-back link-min-width'><a href='{% url 'homePage' %}'><ion-icon name="arrow-back-outline"></ion-icon></a></div>
+{% comment %} vertical menu {% endcomment %}
+<div class='show-all-menu'><ion-icon name="reorder-three-outline"></ion-icon></div>
+<div class='min-width-menu active'>
+    <div class='menu-blocks'>
+        <a href="{% url 'profile' %}">Профиль</a>
+        <a href="{% url 'cart' %}">Корзина</a>
+        <a href="{% url 'profile' %}">Акции</a>
+        <a href="{% url 'homePage' %}">О компании</a>
+        <div class='menu-block-adresses'>
+            <ul>Адреса:
+            <li>Адрес 1</li>
+            <li>Адрес 2</li>
+            <li>Адрес 3</li>
+            </ul>
+        </div>
+        <div class="number">
+            <a href='https://vk.com/roma20031999' target='_blank'><ion-icon class="header-contact-icons" name="logo-vk"></ion-icon></a>
+            <a href='https://www.instagram.com/r.romka.r' target='_blank'><ion-icon class="header-contact-icons" name="logo-instagram"></ion-icon></a>
+            <a href='https://t.me/ryabovroman' target='_blank'><ion-icon class="header-contact-icons" name="paper-plane-outline"></ion-icon></a>
+        </div>
+    </div>
+</div>
+{% if user.is_authenticated %}
+    <div class='all-profile'>
+        <div class="vertical-menu">
+            <a href='#settings'><div class="menu-element menu-first"><ion-icon name="settings-outline"></ion-icon><span>{{ settings }}</span></div></a>
+            <a href='#promo'><div class="menu-element"><ion-icon name="ticket-outline"></ion-icon><span>{{ personal_promo }}</span></div></a>
+            <a href='#orders'><div class="menu-element"><ion-icon name="reader-outline"></ion-icon><span>{{ orders }}</span></div></a>
+            <a href='#cart'><div class="menu-element"><ion-icon name="pricetag-outline"></ion-icon><span>{{ sales }}</span></div></a>
+            <a href='{% url 'logout' %}'><div class='profile-logout'>Выйти</div></a>
+        </div>
+        <div class='vertical-info'>
+            <div id="settings" class='info-settings settings'>
+                <p>Настройки</p>
+                <div class='settings-profile'>
+                    {% if user.first_name %}
+                    <div class='profile-name profile-first'><b class='profile-bold'>Имя:</b> {{ user.first_name }}</div>
+                    {% else %}
+                    <div class='profile-name profile-first'><b class='profile-bold'>Имя:</b>---</div>
+                    {% endif %}
+                    <div class='profile-username'><b class='profile-bold'>Никнейм:</b> {{ user.username }}</div>
+                    <div class='profile-email'><b class='profile-bold'>Почта:</b> {{ user.email }}</div>
+                    <div class='profile-password'>
+                        <form action='' method='POST'>
+                            {% csrf_token %}
+                            <label for='password'><b class='profile-bold'>Пароль:</b></label>
+                            <input id='password' type='password' readonly value='password'></input>
+                            {% comment %} <input class='btn-change-password' type='submit' value='Сменить пароль'></input> {% endcomment %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="promo" class='info-promo promo'>
+                <p>Промокоды</p>
+                <div class='none-promo'><p>Промокоды закончились</p></div>
+            </div>
+            <div id="orders" class='info-orders orders'>
+                <p>Заказы</p>
+                {% for o in order_list %}
+                <div class='order'>
+                    <div class='order-owner'>Имя: {{ o.owner }}</div>
+                    <div class='order-number'>Номер заказа: {{ o.order_number }}</div>
+                    <div class='order-price'>Стоимость: {{ o.total_price }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <div id="cart" class='info-cart cart'>
+                <p>Акции</p>
+                <div class='none-sales'><p>Пока что акций нет</p></div>
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'logout' %}"><div class='profile-logout-min-width'>Выйти</div></a>
+{% else %}
+<div class='login-msg'><p>Вход в аккаунт</p></div>
+{% if request.session.errors %}
+    <div class='mistake'><p>{{ request.session.errors }}</p></div>
+{% endif %}
+<div class='log-reg'>
+    <div class='user-login'>
+        <form action="{% url 'login' %}" method='POST'>
+            {% csrf_token %}
+            <label class='login-label' for='user-login'><p>Логин</p></label>
+            <input class='login-field' type='text' name='username'></input>
+            <label class='login-label' for='user-password'><p>Пароль</p></label>
+            <input class='login-field' type='password' name='password'></input>
+            <input class='login-submit-btn' type='submit' value="Войти"></input>
+        </form>
+    </div>
+    <div class='user-register'>
+        <div class='no-register'><p><b>Нет аккаунта?</b>Зарегистрируйте по ссылке ниже</p></div>
+        <a href="{% url 'register' %}"><div class='register-btn'><p>Регистрация</p></div></a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

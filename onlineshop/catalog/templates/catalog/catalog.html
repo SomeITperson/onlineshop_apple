@@ -1,0 +1,82 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+{% block title %}
+<title>{{ title }}</title>
+{% endblock %}
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{% static 'catalog/css/style-base.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'catalog/css/style-catalog.css' %}">
+{% endblock %}
+{% block content %}
+<div class='link-back'><a href='{% url 'homePage' %}'>Назад</a></div>
+<div class='upper-sidebar'>
+    {% comment %} <a href='#'><div>iPhone</div></a>
+    <a href='#'><div>Watch</div></a>
+    <a href='#'><div>AirPods</div></a>
+    <a href='#'><div>Mac</div></a>
+    <a href='#'><div>Аксессуары</div></a> {% endcomment %}
+    {% for c in cats %}
+        {% if back %}
+        <a class='category-back' href="{% url 'catalog' %}"><div>Назад</div></a>
+        {% endif %}
+        <a href="{{ c.slug }}"><div>{{ c.name }}</div></a>
+    {% endfor %}
+</div>
+<div class='block-category-menu'>
+    <div class='link-back link-min-width'><a href='{% url 'homePage' %}'><ion-icon name="arrow-back-outline"></ion-icon></a></div>
+    <div class='categtory-filter-min-width'><p><ion-icon class='arrow-category' name="arrow-down-outline"></ion-icon>Категории</p></div>
+    <div class='show-all-menu'><ion-icon name="reorder-three-outline"></ion-icon></div>
+</div>
+<div class='min-width-menu active'>
+    <div class='menu-blocks'>
+        <a href="{% url 'profile' %}">Профиль</a>
+        <a href="{% url 'cart' %}">Корзина</a>
+        <a href="{% url 'profile' %}">Акции</a>
+        <a href="{% url 'homePage' %}">О компании</a>
+        <div class='menu-block-adresses'>
+            <ul>Адреса:
+            <li>Адрес 1</li>
+            <li>Адрес 2</li>
+            <li>Адрес 3</li>
+            </ul>
+        </div>
+        <div class="number">
+            <a href='https://vk.com/roma20031999' target='_blank'><ion-icon class="header-contact-icons" name="logo-vk"></ion-icon></a>
+            <a href='https://www.instagram.com/r.romka.r' target='_blank'><ion-icon class="header-contact-icons" name="logo-instagram"></ion-icon></a>
+            <a href='https://t.me/ryabovroman' target='_blank'><ion-icon class="header-contact-icons" name="paper-plane-outline"></ion-icon></a>
+        </div>
+    </div>
+</div>
+<div class='upper-sidebar-min-width'>
+    {% for c in cats %}
+        {% if back %}
+        <a class='category-back' href="{% url 'catalog' %}"><div>Назад</div></a>
+        {% endif %}
+        <a href="{{ c.slug }}"><div>{{ c.name }}</div></a>
+    {% endfor %}
+</div>
+<div class='good-cards'>
+    {% for q in queryset %}
+    <div id='{{ q.id }}' class='card'>
+        <img class='card-img' src="{{ q.photo.url }}"></img>
+        <p class='card-first'>Apple</p>
+        <p>{{ q.name }}</p>
+        <p>{{ q.price }}Р</p>
+        <form action="{% url 'add' id=q.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="url_from" value="{{ request.path }}">
+            <button type="submit" class="button-add" value=''><p><ion-icon class='card-cart' name="cart-outline"></ion-icon></p></button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+<div class='pagination'>
+    {% for p in paginator.pages_range %}
+        {% if page.obj.number == p %}
+        <div class='pages page-selected'>{{ p }}</div>
+        {% else %}
+        <div class='pages'><a href='?page={{ p }}'>{{ p }}</a></div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,274 @@
+/* На главную */
+.link-back {
+    font-size: 20px;
+    position: absolute;
+    top: 1.5%;
+    left: 2%;
+    background: white;
+    border-radius: 2px;
+    font-family: Ermilov-bold;
+    height: 30px;
+    cursor: pointer;
+    vertical-align: middle;
+    width: 10%;
+    text-align: center;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.link-back a {
+    vertical-align: middle;
+}
+
+.link-back:hover {
+    background: rgb(220, 220, 220);
+}
+
+/* Корзина */
+.cart-title {
+    margin: 20vh 70% 0 30%;
+    color: white;
+    font-size: 2.5vw;
+    font-weight: bold;
+    font-family: Ermilov-bold;
+}
+
+.empty-block {
+    background: white;
+    opacity: 0;
+    height: 100vh;
+}
+
+@keyframes hr-animation {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(50vw);
+    }
+}
+
+.cart-hr {
+    width: 50%;
+    margin: 2vh 25% 2vh 25%;
+    height: 4px;
+    border: none;
+    background-image: linear-gradient(43deg, #7e2b90 0%, #cf2fdd 46%, #762984 100%);
+}
+
+.cart-hr:before {
+    content: '';
+    width: 20px;
+    height: 4px;
+    background: rgb(255, 255, 255);
+    position: absolute;
+    box-shadow: 0 0 20px white;
+    animation: hr-animation 5s ease infinite;
+}
+
+.cart-items {
+    display: flex;
+    width: 50%;
+    margin: 0 25% 0 25%;
+    flex-direction: column;
+    height: auto;
+}
+
+.item {
+    height: 20vh;
+    background: white;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    font-family: UZ;
+}
+
+.item-title {
+    font-size: 1.2em;
+}
+
+.item-price {
+    font-size: 1em;
+    color: red;
+    margin-right: 2vw;
+    font-weight: bold;
+}
+
+.button-delete-one-item {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 2vh;
+}
+
+.ion-icon-delete {
+    width: 30px;
+    height: 30px;
+    color: red;
+    margin: 0;
+}
+
+.btn-delete-all-from-cart {
+    width: 50%;
+    margin: 0 10% 0 40%;
+}
+
+.btn-delete-all-from-cart button {
+    background: red;
+    color: white;
+    border: none;
+    width: 20vh;
+    height: 2vw;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-delete-all-from-cart button:hover {
+    background: rgb(255, 73, 73);
+}
+
+.item-photo-img {
+    width: 8vw;
+}
+
+.result {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 8vh;
+    background: white;
+    font-size: 1.5em;
+    font-family: Ermilov-bold;
+    border: 2px solid purple;
+}
+
+.ordering {
+    width: 100%;
+    margin-top: 5vh;
+}
+
+.ordering-btn {
+    float: right;
+    border: 2px solid rgb(68, 68, 255);
+    background: rgb(68, 68, 255);
+    width: 50%;
+    height: 7vh;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    font-family: UZ;
+    margin-bottom: 200px;
+    cursor: pointer;
+}
+
+.ordering-btn:hover {
+    content: '';
+    background: rgb(70, 120, 255);
+}
+
+.cart-auth {
+	width: 50%;
+	height: 8vh;
+    background: #ffffff;
+	border-radius: 30px;
+	text-align: center;
+	font-family: Ermilov-bold;
+	font-size: 1.5vw;
+	color: black;
+	vertical-align: middle;
+	margin: 0 25% 20vh 25%;
+}
+
+.cart-auth p {
+	padding-top: 4%;
+}
+
+.cart-auth:hover {
+	background: #840d86;
+	transition: 0.5s;
+    color: white;
+}
+
+.link-min-width {
+    display: none;
+}
+
+.show-all-menu {
+    display: none;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .link-back {
+        display: none;
+    }
+
+    .link-min-width {
+        display: inline-flex;
+        height: 25px;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .menu {
+        margin: 425px 15% 0 15%;
+    }
+
+    .item-photo-img {
+        width: 18vw;
+    }
+
+    .min-width-menu {
+        display: auto;
+    }
+
+    .result {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 8vh;
+        background: white;
+        font-size: 1.2em;
+        font-family: Ermilov-bold;
+        border: 2px solid purple;
+        width: 100%;
+        align-content: center;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    .ordering-btn {
+        width: 100%;
+    }
+
+    .btn-delete-all-from-cart button {
+        background: red;
+        color: white;
+        border: none;
+        width: 20vh;
+        height: 3vh;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .btn-delete-all-from-cart {
+        width: 50%;
+        margin: 0 25% 0 25%;
+    }
+
+    .cart-title {
+        font-size: 3vh;
+    }
+
+    .min-width-menu {
+        top: 0;
+    }
+
+    .show-all-menu {
+        display: flex;
+    }
+}

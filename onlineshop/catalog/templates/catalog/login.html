@@ -1,0 +1,29 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+{% block title %}
+<title>Вход</title>
+{% endblock %}
+{% block content %}
+<div class='link-back'><a href='{% url 'homePage' %}'>Назад</a></div>
+<div class='link-back link-min-width'><a href='{% url 'homePage' %}'><ion-icon name="arrow-back-outline"></ion-icon></a></div>
+<div class='login-msg'><p>Вход в аккаунт</p></div>
+{% if request.session.errors %}
+    <div class='mistake'><p>{{ request.session.errors }}</p></div>
+{% endif %}
+<div class='log-reg'>
+    <div class='user-login'>
+        <form action="{% url 'login' %}" method='POST'>
+            {% csrf_token %}
+            <label class='login-label' for='user-login'><p>Логин</p></label>
+            <input class='login-field' type='text' name='username'></input>
+            <label class='login-label' for='user-password'><p>Пароль</p></label>
+            <input class='login-field' type='password' name='password'></input>
+            <input class='login-submit-btn' type='submit' value="Войти"></input>
+        </form>
+    </div>
+    <div class='user-register'>
+        <div class='no-register'><p><b>Нет аккаунта?</b>Зарегистрируйте по ссылке ниже</p></div>
+        <a href="{% url 'register' %}"><div class='register-btn'><p>Регистрация</p></div></a>
+    </div>
+</div>
+{% endblock %}
